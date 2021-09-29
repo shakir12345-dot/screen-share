@@ -13,10 +13,10 @@ use Amir\Comm;
 use Ratchet\App;
 
 //set an array of origins allowed to connect to this server
-$allowed_origins = ['localhost', 'shakir12345-dot.github.io//screen-share'];
+$allowed_origins = ['shakir12345-dot.github.io/screen-share', 'shakir12345-dot.github.io/screen-share'];
 
 // Run the server application through the WebSocket protocol on port 8080
-$app = new App('localhost', 8080, '0.0.0.0');//App(hostname, port, 'whoCanConnectIP', '')
+$app = new App('shakir12345-dot.github.io/screen-share', 8080, 'shakir12345-dot.github.io/screen-share');//App(hostname, port, 'whoCanConnectIP', '')
 
 //create socket routes
 //route(uri, classInstance, arrOfAllowedOrigins)
