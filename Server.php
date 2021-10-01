@@ -19,29 +19,25 @@ class Server
     private function getIceServers()
     {
         // PHP Get ICE STUN and TURN list
-        $data = ["format"=>"urls"];
-        $json_data = json_encode($data);
+
+        $data = array( "format" => "urls" );
+        $data_json = json_encode($data);
 
         $curl = curl_init();
-
-        curl_setopt_array($curl, [
-            CURLOPT_HTTPHEADER => ["Content-Type: application/json", "Content-Length: " . strlen($json_data)],
-            CURLOPT_POSTFIELDS => $json_data,
-            CURLOPT_URL => "https://global.xirsys.net/_turn/YOUR-CHANNEL-NAME",//Replace 'YOUR-CHANNEL-NAME' with the name of your xirsys channel
-            CURLOPT_USERPWD => "YOUR PASSWORD",
+        curl_setopt_array( $curl, array (
+            CURLOPT_HTTPHEADER => array("Content-Type: application/json","Content-Length: " . strlen($data_json)),
+            CURLOPT_POSTFIELDS => $data_json,
+            CURLOPT_URL => "https://global.xirsys.net/_turn/MyFirstApp",
+            CURLOPT_USERPWD => "shakir:a6dbbe4a-2142-11ec-ae76-0242ac150003",
             CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
             CURLOPT_CUSTOMREQUEST => "PUT",
-            CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_SSL_VERIFYHOST => 2,
-            CURLOPT_SSL_VERIFYPEER => TRUE
-        ]);
+            CURLOPT_RETURNTRANSFER => 1
+        ));
 
         $res = curl_exec($curl);
-        
         if(curl_error($curl)){
             echo "Curl error: " . curl_error($curl);
         };
-
         curl_close($curl);
         
         return $res;
